@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres:
+    container_name: ppdb
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./db/01-init/:/docker-entrypoint-initdb.d/
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: asd
+      POSTGRES_DB: ppdb
