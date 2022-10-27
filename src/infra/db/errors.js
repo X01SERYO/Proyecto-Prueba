@@ -1,5 +1,3 @@
-import errors from '../../errors';
-
 const DATABASE_ERROR_TITLE = 'A database error was detected';
 
 /**
@@ -7,13 +5,7 @@ const DATABASE_ERROR_TITLE = 'A database error was detected';
  * @param {Error} err The error to be handled
  */
 const handle = err => {
-  const appError = new errors.AppError(
-    errors.ErrorType.InternalServerError,
-    DATABASE_ERROR_TITLE,
-    err.message,
-    true
-  );
-  throw appError;
+  throw err;
 };
 
 export { handle };
