@@ -1,6 +1,6 @@
 import pg from 'pg';
-import config from '../../config';
-import {errors} from './errors';
+import config from '../config';
+import * as errors from './errors';
 
 const { Pool } = pg;
 
@@ -16,8 +16,8 @@ const pgUserSn = process.env.DB_PG_USER_SN || 'pgUser';
  */
 const getPool = async () => {
   if (!pool) {
-    const pgPassword = await config.secret.getSecret(pgPasswordSn);
-    const pgUser = await config.secret.getSecret(pgUserSn);
+    const pgPassword = config.db.pg.password; //await config.secret.getSecret(pgPasswordSn);
+    const pgUser = config.db.pg.user; //await config.secret.getSecret(pgUserSn);
 
     pool = new Pool({
       user: pgUser,

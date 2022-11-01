@@ -1,3 +1,4 @@
 import config from './config';
+import * as db from './db';
 
-export { config };
+export { config, db };

@@ -1,12 +1,17 @@
+/**
+ * Represents a product
+ */
 class Command {
   /**
-   *
-   * @param {*} name
-   * @param {*} buyPrice
-   * @param {*} sellPrice
-   * @param {*} packaging
+   * Creates a create product command
+   * @param {String} code The code
+   * @param {String} name The name
+   * @param {Number} buyPrice The buy price
+   * @param {Number} sellPrice The sell price
+   * @param {Number} packaging The packaing
    */
-  constructor({name, buyPrice, sellPrice, packaging}) {
+  constructor({ code, name, buyPrice, sellPrice, packaging }) {
+    this.code = code;
     this.name = name;
     this.buyPrice = buyPrice;
     this.sellPrice = sellPrice;

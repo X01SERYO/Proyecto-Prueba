@@ -18,6 +18,20 @@ const schema = {
       },
     },
   },
+  db: {
+    pg: {
+      user: {
+        format: 'String',
+        default: 'user',
+        env: 'PGUSER',
+      },
+      password: {
+        format: 'String',
+        default: 'password',
+        env: 'PGPASSWORD',
+      },
+    },
+  },
 };
 
 export { schema };

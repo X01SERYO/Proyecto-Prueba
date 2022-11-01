@@ -5,6 +5,10 @@ import cors from '@fastify/cors';
 import Fastify from 'fastify';
 import { config } from './infra';
 
+/**
+ * Configure routes
+ * @param {Fastify} server The server
+ */
 const route = async server => {
   modules.product.controller.route(server);
 };
@@ -19,26 +23,30 @@ const handleValidationError = errs => {
   const error = errs.map(e => `<${e.dataPath}> ${e.message}`).join(';');
   console.log(error);
 
-  return error;
+  return { error };
 };
 
 const handleNotFound = async req => {
   const error = `NOT FOUND ${req.url}`;
 
-  return error;
+  return { error };
 };
 
-const handleError = async (err, res) => {
+const handleError = async (err, req, res) => {
   if (err instanceof SyntaxError) {
     err = `Error found: ${err.message}`;
   }
 
   const problem = err;
-  console.log(err);
+  console.log(problem);
 
   res.status(500).send(problem);
 };
 
+/**
+ * Builds openApi configuration
+ * @returs {Object} The configuration
+ */
 const openApiConfig = () => {
   const openApiConfig = {
     swagger: {
@@ -57,6 +65,10 @@ const openApiConfig = () => {
   return openApiConfig;
 };
 
+/**
+ * Builds a fastify server
+ * @returns {Fastify} A server
+ */
 const build = () => {
   const server = Fastify({ logger: true });
 
@@ -74,6 +86,10 @@ const build = () => {
   return server;
 };
 
+/**
+ * Starts a server
+ * @param {Fastify} server The server
+ */
 const start = async server => {
   try {
     await server.listen(config.server.port, config.server.ip);
@@ -82,6 +98,9 @@ const start = async server => {
   }
 };
 
+/**
+ * Configures the node process
+ */
 const configureProcess = () => {
   console.log(config.server.docs.expose);
   console.log(config.server.port);
