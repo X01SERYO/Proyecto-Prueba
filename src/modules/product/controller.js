@@ -16,7 +16,7 @@ const handleCreate = async req => {
 /**
  * Handles the find products
  * @param {Request} req The request
- * @returns {Object[]} The products
+ * @returns {ProductModel[]} The products
  */
 const handleFind = async req => {
   const query = new find.Query(req.query);
