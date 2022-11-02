@@ -5,10 +5,10 @@ import * as store from './store';
  * @param {Command} cmd The command
  * @returns {Number} The product id
  */
-const handler = async cmd => {
+const handle = async cmd => {
   const productId = await store.createProduct(cmd);
 
   return productId;
 };
 
-export { handler };
+export { handle };
