@@ -1,8 +1,9 @@
 const schema = {
   body: {
     type: 'object',
-    required: ['name', 'buyPrice', 'sellPrice', 'packaging'],
+    required: ['code', 'name', 'buyPrice', 'sellPrice', 'packaging'],
     properties: {
+      code: { type: 'string' },
       name: { type: 'string' },
       buyPrice: { type: 'number' },
       sellPrice: { type: 'number' },
