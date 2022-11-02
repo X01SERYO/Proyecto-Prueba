@@ -1,5 +1,5 @@
 import { Command } from './command';
-import { handler } from './handler';
+import { handle } from './handler';
 import { schema } from './schema';
 
-export { Command, handler, schema };
+export { Command, handle, schema };

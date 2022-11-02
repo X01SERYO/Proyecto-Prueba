@@ -18,7 +18,7 @@ LANGUAGE PLPGSQL;
 -- FIND FUNTIONS 
 
 CREATE OR REPLACE FUNCTION pp.fn_find_products(req_id INTEGER, req_code TEXT, req_name TEXT, req_buy_price DECIMAL, 
-req_sell_price DECIMAL, req_packaging INTEGER)
+req_sell_price DECIMAL, req_packaging INTEGER, req_deleted BOOLEAN, page INTEGER, size INTEGER)
     RETURNS SETOF pp.products 
 AS $$
     SELECT *
@@ -29,7 +29,9 @@ AS $$
     AND P.buy_price = COALESCE(req_buy_price, P.buy_price)
     AND P.sell_price = COALESCE(req_sell_price, P.sell_price)
     AND P.packaging = COALESCE(req_packaging, P.packaging)
-    AND P.deleted = FALSE;
+    AND P.deleted = req_deleted
+    LIMIT size
+    OFFSET page;
 $$
 LANGUAGE SQL;
 
